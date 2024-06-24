@@ -1,0 +1,36 @@
+.header-container {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.form-container {
+  padding: 5%;
+}
+
+.btn {
+  width: 100%;
+}
+
+input {
+  background-color: #f4f4f4;
+}
+
+.submit-btn {
+  background-color: #47bbfe;
+  color: #ffffff;
+}
+
+.cancel-btn {
+  background-color: #f4f4f4;
+  color: #b1b1b1;
+}
+
+.invalid {
+  color: rgb(230, 74, 74);
+}
+
+.invalid-input {
+  border: 2px solid rgb(230, 74, 74);
+  border-radius: 5px;
+}
