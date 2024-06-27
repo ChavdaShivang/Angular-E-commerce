@@ -1,56 +1,58 @@
-<div class="container header-container">
-  <p> <i class="fa-solid fa-user"></i> Registration Form</p>
+<div class=""form-signin>
+  <div class="container header-container">
+    <p> <i class="fa-solid fa-user"></i> Registration Form</p>
+  </div>
+  
+  <form action="" class="row g-3" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row g-3">
+      <div class="col-md-12">
+        <label for="n" class="form-label"><i class="fa-solid fa-address-card"></i> Username</label>
+        <input type="text" class="form-control" id="n" formControlName="username"
+          [ngClass]="{'invalid-input':(form.get('username')?.touched && (form.get('username')?.errors?.['required']  || form.get('username')?.errors?.['invalidSymbols']))}" />
+        <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+          <div *ngIf="form.get('username')?.errors?.['required']" class="invalid">
+            <sup>*</sup>Username is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-12">
+        <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email"
+          [ngClass]="{'invalid-input':(form.get('email')?.touched && (form.get('email')?.errors?.['required'] || form.get('email')?.errors?.['email']))}" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          <div *ngIf="form.get('email')?.errors?.['required']" class="invalid">
+            <sup>*</sup>Email is required
+          </div>
+          <div *ngIf="form.get('email')?.errors?.['email']" class="invalid">
+            <sup>*</sup>Please enter a valid email
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-12">
+        <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password"
+          [ngClass]="{'invalid-input':(form.get('pass')?.touched && (form.get('pass')?.errors?.['required'] || form.get('pass')?.errors?.['minlength']))}" />
+        <div *ngIf="form.get('pass')?.invalid && form.get('pass')?.touched">
+          <div *ngIf="form.get('pass')?.errors?.['required']" class="invalid">
+            <sup>*</sup>Password is required
+          </div>
+          <div *ngIf="form.get('pass')?.errors?.['minlength']" class="invalid">
+            <sup>*</sup>Password must be atleast 6 characters long
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6">
+      <button type="submit" class="btn submit-btn">Submit</button>
+      </div>
+      <div class="col-md-6">
+        <button type="reset" class="btn cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </form>
 </div>
-
-<form action="" class="row g-3" [formGroup]="form" (ngSubmit)="submit()">
-  <div class="row g-3">
-    <div class="col-md-12">
-      <label for="n" class="form-label"><i class="fa-solid fa-address-card"></i> Name</label>
-      <input type="text" class="form-control" id="n" formControlName="name"
-        [ngClass]="{'invalid-input':(form.get('name')?.touched && (form.get('name')?.errors?.['required']  || form.get('name')?.errors?.['invalidSymbols']))}" />
-      <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
-        <div *ngIf="form.get('name')?.errors?.['required']" class="invalid">
-          <sup>*</sup>Name is required
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row g-3">
-    <div class="col-md-12">
-      <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> Email</label>
-      <input type="email" class="form-control" id="email" formControlName="email"
-        [ngClass]="{'invalid-input':(form.get('email')?.touched && (form.get('email')?.errors?.['required'] || form.get('email')?.errors?.['email']))}" />
-      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-        <div *ngIf="form.get('email')?.errors?.['required']" class="invalid">
-          <sup>*</sup>Email is required
-        </div>
-        <div *ngIf="form.get('email')?.errors?.['email']" class="invalid">
-          <sup>*</sup>Please enter a valid email
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row g-3">
-    <div class="col-md-12">
-      <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password"
-        [ngClass]="{'invalid-input':(form.get('pass')?.touched && (form.get('pass')?.errors?.['required'] || form.get('pass')?.errors?.['minlength']))}" />
-      <div *ngIf="form.get('pass')?.invalid && form.get('pass')?.touched">
-        <div *ngIf="form.get('pass')?.errors?.['required']" class="invalid">
-          <sup>*</sup>Password is required
-        </div>
-        <div *ngIf="form.get('pass')?.errors?.['minlength']" class="invalid">
-          <sup>*</sup>Password must be atleast 6 characters long
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row g-3">
-    <div class="col-md-6">
-    <button type="submit" class="btn submit-btn">Submit</button>
-    </div>
-    <div class="col-md-6">
-      <button type="reset" class="btn cancel-btn">Cancel</button>
-    </div>
-  </div>
-</form>

@@ -1,0 +1,10 @@
+<div class="product-item" (click)="viewProductDetails()">
+  <div class="img-container">
+    <img [src]="product.img" alt="{{ product.title }}" />
+  </div>
+  <div class="info-container">
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.desc }}</p>
+    <p>Price: {{ product.price }}</p>
+  </div>
+</div>

@@ -16,14 +16,28 @@ export class NavComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    Emiiters.authEmitter.subscribe((auth: boolean) => {
-      this.authenticated = auth;
-    });
+    this.http
+      .get('http://localhost:5000/api/users/find/', {
+        withCredentials: true,
+        headers: {
+          token: `Bearer ${localStorage.getItem('accessToken') ?? ''}`,
+        },
+      })
+      .subscribe((res: any) => {
+        this.authenticated = true;
+      });
   }
 
   logout(): void {
     this.http
-      .post('http://localhost:5000/api/logout', {}, { withCredentials: true })
-      .subscribe(() => (this.authenticated = false));
+      .post(
+        'http://localhost:5000/api/auth/logout',
+        {},
+        { withCredentials: true }
+      )
+      .subscribe((res: any) => {
+        this.authenticated = false;
+        localStorage.removeItem('accessToken');
+      });
   }
 }

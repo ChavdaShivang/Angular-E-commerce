@@ -22,33 +22,26 @@ export class RegisterComponent implements OnInit {
   ){}
   ngOnInit(): void{
     this.form = this.formBuilder.group({
-      name:"",
+      username:"",
       email:"",
       password:""
     })
   }
 
-  validateEmail = (email: any) => {
-    let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-
-    if(email.match(emailRegex)) {
-      return true;
-    }else{
-      return false
-    }
-  }
 
   submit(): void{
     let user = this.form.getRawValue()
-    if(user.name === "" || user.email === "" || user.password === ""){
+    console.log(user)
+    if(user.username === "" || user.email === "" || user.password === ""){
       Swal.fire("Error", "Please enter all the fields", "error")
-    }else if(!this.validateEmail(user.email)){
-      Swal.fire("Error", "Please enter a valid email", "error")
     }else if(user.password.length < 6 ){
       Swal.fire("Error", "Password must be at least 6 characters long", "error")
     }else{
-      this.http.post("http://localhost:5000/api/register", user, {
-        withCredentials: true
+      this.http.post("http://localhost:5000/api/auth/register", user, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        }
       }).subscribe(() => this.router.navigate(['/']), (err) => {
         Swal.fire("Error", err.error.message, "error")
       })

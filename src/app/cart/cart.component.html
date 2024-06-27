@@ -1,0 +1,54 @@
+<div class="container my-5">
+  <h2>Your Cart</h2>
+  <div *ngIf="cartItems.length === 0" class="alert alert-info" role="alert">
+    Your cart is empty.
+  </div>
+  <div *ngIf="cartItems.length > 0" class="row">
+    <div class="col-md-8">
+      <div class="card mb-3" *ngFor="let item of cartItems">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              [src]="item.product.img"
+              class="img-fluid rounded-start"
+              alt="{{ item.product.title }}"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product.title }}</h5>
+              <p class="card-text">{{ item.product.desc }}</p>
+              <p class="card-text">
+                <strong>Price:</strong> {{ item.product.price }}
+              </p>
+              <p class="card-text">
+                <strong>Quantity:</strong> {{ item.quantity }}
+              </p>
+              <!-- <button
+                class="btn btn-danger"
+                (click)="removeFromCart(item.product._id)"
+              >
+                Remove
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Summary</h5>
+          <p class="card-text">
+            <strong>Total Items:</strong> {{ cartItems.length }}
+          </p>
+          <!-- <p class="card-text">
+            <strong>Total Price:</strong>
+            {{ cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0) }}
+          </p> -->
+          <button class="btn btn-primary btn-block">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

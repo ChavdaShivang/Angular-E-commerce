@@ -1,0 +1,17 @@
+app-product-item {
+  width: 27%;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  margin: 20px 0px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.2s ease;
+}
+
+app-product-item:hover{
+  transform: scale(1.1);
+}

@@ -22,33 +22,26 @@ export class LoginComponent {
   ){}
   ngOnInit(): void{
     this.form = this.formBuilder.group({
-      email:"",
+      username:"",
       password:""
     })
   }
 
-  validateEmail = (email: any) => {
-    let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-
-    if(email.match(emailRegex)) {
-      return true;
-    }else{
-      return false
-    }
-  }
 
   submit(): void{
     let user = this.form.getRawValue()
-    if(user.email === "" || user.password === ""){
+    if(user.username === "" || user.password === ""){
       Swal.fire("Error", "Please enter all the fields", "error")
-    }else if(!this.validateEmail(user.email)){
-      Swal.fire("Error", "Please enter a valid email", "error")
     }else if(user.password.length < 6 ){
       Swal.fire("Error", "Password must be at least 6 characters long", "error")
     }else{
-      this.http.post("http://localhost:5000/api/login", user, {
+      this.http.post("http://localhost:5000/api/auth/login", user, {
         withCredentials: true
-      }).subscribe(() => this.router.navigate(['/']), (err) => {
+      }).subscribe((res: any) => {
+        localStorage.setItem("accessToken", res.accessToken);
+        this.router.navigate(['/'])
+        
+      }, (err) => {
         Swal.fire("Error", err.error.message, "error")
       })
     }
